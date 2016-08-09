@@ -9,16 +9,16 @@ pkg = require('./package.json'),
 // main directories
 dir = {
   base: __dirname + '/',
-  lib: __dirname + '/lib/',
-  source: './docs/',
-  dest: './build/'
+  docs: './docs/',
+  dest: './build/',
+  vf: './node_modules/vanilla-framework/'
 },
 
 // template config
 templateConfig = {
   engine:     'handlebars',
-  directory:  dir.source + 'templates/',
-  partials:   dir.source + 'partials/',
+  directory:  './templates/',
+  partials:   './partials/',
   default:    'default.hbt'
 },
 
