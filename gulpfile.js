@@ -150,7 +150,7 @@ gulp.task('deploy', ['build'], function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(['scss/**/*.scss', 'node_modules/vanilla-framework/scss/**/*.scss'], ['sass-develop']);
+  gulp.watch(['scss/**/*.scss', dir.vf + 'scss/**/*.scss'], ['sass-develop']);
   gulp.watch(['src/**/*.hbt', 'src/**/*.html', 'src/**/*.md'], ['pattern-library']);
 });
 
