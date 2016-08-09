@@ -1,4 +1,0 @@
----
-collection: patterns
-title: header
----
