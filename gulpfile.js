@@ -77,10 +77,10 @@ gulp.task('import-docs', function() {
 });
 
 /* Generate Pattern Library with Metalsmith */
-gulp.task('pattern-library', function() {
+gulp.task('pattern-library', ['import-docs'], function() {
   metalsmith(dir.base)
     .clean(!devBuild) // clean folder before a production build
-    .source(dir.source) // source folder (src/)
+    .source(dir.docs) // source folder (src/)
     .destination(dir.dest) // build folder (build/)
     .use(collections({
       pages: {
@@ -152,6 +152,8 @@ gulp.task('deploy', ['build'], function() {
 gulp.task('watch', function() {
   gulp.watch(['scss/**/*.scss', dir.vf + 'scss/**/*.scss'], ['sass-develop']);
   gulp.watch(['src/**/*.hbt', 'src/**/*.html', 'src/**/*.md'], ['pattern-library']);
+  gulp.watch(dir.vf + '**/*.md', ['import-docs']);
+
 });
 
 gulp.task('develop', ['pattern-library', 'sass-develop', 'watch', 'browser-sync']);
