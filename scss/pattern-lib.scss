@@ -89,14 +89,10 @@ $sidebar-width: 12em;
     &__link {
       text-transform: capitalize;
       display: inline-block;
-      padding-left: .5rem;
+      margin-left: .5rem;
       font-size: .875rem;
       text-decoration: none;
       margin-bottom: 0;
-    }
-
-    &__link:hover {
-      text-decoration: underline;
     }
   }
 
