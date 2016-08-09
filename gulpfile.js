@@ -71,6 +71,11 @@ gulp.task('browser-sync', function() {
     gulp.watch("./build/**/*.html").on("change", reload);
 });
 
+/* Import docs from Vanilla Framework dep */
+gulp.task('import-docs', function() {
+  gulp.src([dir.vf + 'docs/**/*.md']).pipe(gulp.dest('docs'));
+});
+
 /* Generate Pattern Library with Metalsmith */
 gulp.task('pattern-library', function() {
   metalsmith(dir.base)
