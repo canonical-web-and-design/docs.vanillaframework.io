@@ -1,0 +1,19 @@
+#! /usr/bin/env bash
+
+set -euo pipefail  # Safe mode
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Unique temporary dir for the vanilla-framework repository
+tmp_repo_dir=$(mktemp -u vanilla-framework-XXXX)
+
+# Clone vanilla-framework
+git clone -b v1-dev https://github.com/ubuntudesign/vanilla-framework.git ${tmp_repo_dir}
+
+# Remove old docs repo
+rm -rf ${script_dir}/docs/vf
+mv ${tmp_repo_dir}/docs ${script_dir}/docs/vf
+
+# Remove temp repo
+rm -rf ${tmp_repo_dir}
+
