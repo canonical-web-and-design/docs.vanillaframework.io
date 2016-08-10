@@ -1,5 +1,3 @@
 /build/
 /node_modules/
-/docs/vf/
-/vanilla-framework-*
-/docs
+/src/docs/

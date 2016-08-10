@@ -4,6 +4,8 @@
 // Temp styling for Pattern Lib MVP
 // This should be superceded by a docs theme
 
+// Base styles
+
 $sidebar-width: 12em;
 
 .pl-header {
@@ -38,8 +40,6 @@ $sidebar-width: 12em;
   }
 
   &__badges {
-
-    margin-bottom: 1rem;
 
     a {
       border-bottom: 0;
