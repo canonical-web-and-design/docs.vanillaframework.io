@@ -79,7 +79,7 @@ gulp.task('import-docs', function() {
 /* Generate Pattern Library with Metalsmith */
 gulp.task('pattern-library', ['import-docs'], function() {
   metalsmith(dir.base)
-    .clean(!devBuild) // clean folder before a production build
+    .clean(true) // clean folder before build
     .source(dir.src) // source folder (src/)
     .destination(dir.dest) // build folder (build/)
     .use(collections({
