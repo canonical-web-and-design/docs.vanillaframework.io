@@ -9,7 +9,7 @@ pkg = require('./package.json'),
 // main directories
 dir = {
   base: __dirname + '/',
-  docs: './docs/',
+  src: './src/',
   dest: './build/',
   vf: './node_modules/vanilla-framework/'
 },
@@ -17,8 +17,8 @@ dir = {
 // template config
 templateConfig = {
   engine:     'handlebars',
-  directory:  './templates/',
-  partials:   './partials/',
+  directory:  './src/templates/',
+  partials:   './src/partials/',
   default:    'default.hbt'
 },
 
@@ -73,14 +73,14 @@ gulp.task('browser-sync', function() {
 
 /* Import docs from Vanilla Framework dep */
 gulp.task('import-docs', function() {
-  gulp.src([dir.vf + 'docs/**/*.md']).pipe(gulp.dest('docs'));
+  gulp.src([dir.vf + 'docs/**/*.md']).pipe(gulp.dest('src/docs'));
 });
 
 /* Generate Pattern Library with Metalsmith */
 gulp.task('pattern-library', ['import-docs'], function() {
   metalsmith(dir.base)
     .clean(!devBuild) // clean folder before a production build
-    .source(dir.docs) // source folder (src/)
+    .source(dir.src) // source folder (src/)
     .destination(dir.dest) // build folder (build/)
     .use(collections({
       pages: {
@@ -151,9 +151,7 @@ gulp.task('deploy', ['build'], function() {
 
 gulp.task('watch', function() {
   gulp.watch(['scss/**/*.scss', dir.vf + 'scss/**/*.scss'], ['sass-develop']);
-  gulp.watch(['src/**/*.hbt', 'src/**/*.html', 'src/**/*.md'], ['pattern-library']);
-  gulp.watch(dir.vf + '**/*.md', ['import-docs']);
-
+  gulp.watch([dir.vf + 'docs/**/*.md', '*.md', 'partials/**/*.hbt', 'templates/**/*.hbt', 'pages/**/*.md'], ['pattern-library']);
 });
 
 gulp.task('develop', ['pattern-library', 'sass-develop', 'watch', 'browser-sync']);
