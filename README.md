@@ -18,12 +18,3 @@ If you wish to make iterative changes to Vanilla Framework source code and then 
 3. This project will now reference your local copy of Vanilla Framework instead of the global NPM module.
 
 4. If you open two separate Terminal windows for each project and run `gulp develop` in both - any changes you make to Vanilla Framework should be immediately reflected in this project at `http://localhost:3000`
-
-
-## 2. Importing docs directly from Github
-
-If you simply want to import the latest docs from the `master` branch on Github - you can run:
-
-``` bash
-./import-docs
-```
