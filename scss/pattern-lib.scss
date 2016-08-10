@@ -8,12 +8,12 @@ $sidebar-width: 12em;
 
 .pl-header {
   width: 100%;
-  background: $cool-grey;
+  background: $color-cool-grey;
   padding: 1rem;
   display: flex;
 
   &__link {
-    color: $white;
+    color: $color-white;
 
     &,
     &:hover {
@@ -22,6 +22,7 @@ $sidebar-width: 12em;
   }
 }
 
+
 .pl {
 
   margin: 0;
@@ -29,7 +30,7 @@ $sidebar-width: 12em;
   &__heading {
     text-transform: capitalize;
     margin: 0 0 1rem;
-    border-bottom: 1px solid $mid-grey;
+    border-bottom: 1px solid $color-mid-grey;
   }
 
   &__nav {
@@ -49,7 +50,7 @@ $sidebar-width: 12em;
     }
 
     &__link {
-      color: $white;
+      color: $color-white;
       text-decoration: none;
       font-weight: 300;
     }
@@ -73,7 +74,7 @@ $sidebar-width: 12em;
 
   &__sidenav {
     order: -1;
-    background: $light-grey;
+    background: $color-light-grey;
   }
 
   .sidenav-list {
@@ -88,23 +89,19 @@ $sidebar-width: 12em;
     &__link {
       text-transform: capitalize;
       display: inline-block;
-      padding-left: .5rem;
+      margin-left: .5rem;
       font-size: .875rem;
       text-decoration: none;
       margin-bottom: 0;
     }
-
-    &__link:hover {
-      text-decoration: underline;
-    }
   }
 
   &__footer {
-    background: $light-grey;
+    background: $color-light-grey;
     padding: 2rem;
     padding-left: calc(#{$sidebar-width} + 2.5rem);
     font-size: .875rem;
-    color: darken($light-grey, 25%);
+    color: darken($color-light-grey, 25%);
 
     .inline-list {
       list-style: none;
@@ -120,7 +117,7 @@ $sidebar-width: 12em;
 
     .inline-list__item:after {
       content: '•';
-      color: $cool-grey;
+      color: $color-cool-grey;
       font-size: 1em;
       padding: 0 .25rem;
     }
