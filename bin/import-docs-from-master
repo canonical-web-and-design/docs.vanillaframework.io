@@ -1,0 +1,26 @@
+#! /usr/bin/env bash
+
+set -euo pipefail  # Safe mode
+
+branch="v1-dev"
+project_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+
+# Unique temporary dir for the vanilla-framework repository
+mkdir -p ${project_dir}/tmp
+head_commit=$(git ls-remote https://github.com/ubuntudesign/vanilla-framework.git | awk "/${branch}/ {print \$1}")
+echo "Found commit: ${head_commit}"
+tmp_repo_dir="${project_dir}/tmp/vanilla-framework-${head_commit}"
+
+# Clone vanilla-framework
+if [ ! -e  ${tmp_repo_dir} ]; then
+  echo "Cloning vanilla-framework at ${head_commit}"
+  git clone -b ${branch} https://github.com/ubuntudesign/vanilla-framework.git ${tmp_repo_dir}
+else
+  echo "${tmp_repo_dir} already exists, not pulling again"
+fi
+
+# Remove old docs repo
+rm -rf ${project_dir}/src/docs
+echo "Copying ${tmp_repo_dir}/docs to ${project_dir}/src/docs"
+cp -r ${tmp_repo_dir}/docs ${project_dir}/src/docs
+echo "Done"

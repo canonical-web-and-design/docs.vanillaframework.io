@@ -35,6 +35,7 @@ siteMeta = {
 gulp = require('gulp'),
 rename = require('gulp-rename'),
 sass = require('gulp-sass'),
+exec = require('child_process').exec,
 autoprefixer = require('gulp-autoprefixer'),
 gutil = require('gulp-util'),
 scsslint = require('gulp-scss-lint'),
@@ -58,6 +59,7 @@ gulp.task('help', function() {
   console.log('watch - Watch sass files and generate unminified css');
   console.log('test - Lints Sass');
   console.log('deploy - Deploy sites to Github pages');
+  console.log('import-docs-from-master - Import docs from the master branch of vanilla-framework');
 });
 
 // Static server
@@ -152,6 +154,14 @@ gulp.task('deploy', ['build'], function() {
 gulp.task('watch', function() {
   gulp.watch(['scss/**/*.scss', dir.vf + 'scss/**/*.scss'], ['sass-develop']);
   gulp.watch([dir.vf + 'docs/**/*.md', '*.md', 'partials/**/*.hbt', 'templates/**/*.hbt', 'pages/**/*.md'], ['pattern-library']);
+});
+
+// Get the latest docs from the master branch
+gulp.task('import-docs-from-master', function() {
+  exec('bin/import-docs-from-master', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+  });
 });
 
 gulp.task('develop', ['pattern-library', 'sass-develop', 'watch', 'browser-sync']);
