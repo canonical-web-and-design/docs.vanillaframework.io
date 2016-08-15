@@ -116,7 +116,6 @@ $sidebar-width: 12em;
   &__footer {
     background: $color-light-grey;
     padding: 2rem;
-    padding-left: calc(#{$sidebar-width} + 2.5rem);
     font-size: .875rem;
     color: darken($color-light-grey, 25%);
 
@@ -158,6 +157,10 @@ $sidebar-width: 12em;
 
     .pl__sidenav {
       flex: 0 0 $sidebar-width;
+    }
+
+    .pl__footer {
+      padding-left: calc(#{$sidebar-width} + 2.5rem);
     }
   }
 }
