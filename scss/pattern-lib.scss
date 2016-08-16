@@ -13,7 +13,7 @@ $sidebar-width: 12em;
   display: flex;
 
   &__link {
-    color: $color-white;
+    color: $color-light;
     border-bottom: 0;
 
     &,
@@ -66,7 +66,7 @@ $sidebar-width: 12em;
     }
 
     &__link {
-      color: $color-white;
+      color: $color-light;
       text-decoration: none;
       border-bottom: 0;
     }
@@ -116,7 +116,6 @@ $sidebar-width: 12em;
   &__footer {
     background: $color-light-grey;
     padding: 2rem;
-    padding-left: calc(#{$sidebar-width} + 2.5rem);
     font-size: .875rem;
     color: darken($color-light-grey, 25%);
 
@@ -154,10 +153,15 @@ $sidebar-width: 12em;
 
     .pl__content {
       flex: 1;
+      width: calc(100% - #{$sidebar-width});
     }
 
     .pl__sidenav {
       flex: 0 0 $sidebar-width;
+    }
+
+    .pl__footer {
+      padding-left: calc(#{$sidebar-width} + 2.5rem);
     }
   }
 }
