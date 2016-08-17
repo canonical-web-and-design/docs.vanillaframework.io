@@ -118,7 +118,7 @@ gulp.task('sasslint', function() {
 });
 
 gulp.task('sass-build', function() {
-  return gulp.src('scss/**/*.scss')
+  return gulp.src('src/scss/**/*.scss')
     .pipe(sass({
       includePaths: ['node_modules']
     }))
@@ -134,7 +134,7 @@ gulp.task('sass-build', function() {
 });
 
 gulp.task('sass-develop', function() {
-  return gulp.src(['scss/**/*.scss'])
+  return gulp.src(['src/scss/**/*.scss'])
     .pipe(sass({
       includePaths: ['node_modules']
     }))
