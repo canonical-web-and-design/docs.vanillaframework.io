@@ -51,6 +51,11 @@ $sidebar-width: 12em;
     background: $color-light-grey;
     width: 100%;
     padding: .5rem;
+    min-height: 100px;
+  }
+
+  &__outline {
+    border: 1px solid $color-cool-grey;
   }
 
   .topnav-list {
