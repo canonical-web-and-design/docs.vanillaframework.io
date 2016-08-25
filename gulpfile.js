@@ -122,11 +122,6 @@ gulp.task('sass-build', function() {
     .pipe(sass({
       includePaths: ['node_modules']
     }))
-    .pipe(sass({
-      style: 'expanded',
-      errLogToConsole: true,
-      onError: throwSassError
-    }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
     .pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
