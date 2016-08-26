@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+docker run -ti --volume vfio-dependencies:/packages/node_modules --volume `pwd`:/app ubuntudesign/node:v1.0.2 gulp import-docs
+docker run -ti -p 3000:3000 --volume vfio-dependencies:/packages/node_modules --volume `pwd`:/app ubuntudesign/node:v1.0.2 gulp develop
+
