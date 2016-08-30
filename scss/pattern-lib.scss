@@ -93,6 +93,10 @@ $sidebar-width: 12em;
     background: $color-light-grey;
   }
 
+  &__relative {
+    position: relative;
+  }
+
   .sidenav-list {
     margin: 0;
     padding: 0;
@@ -140,10 +144,6 @@ $sidebar-width: 12em;
 
     .inline-list__item:last-child::after {
       content: '';
-    }
-
-    &__relative {
-      position: relative;
     }
   }
 
