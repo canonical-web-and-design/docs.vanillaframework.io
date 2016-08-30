@@ -141,6 +141,10 @@ $sidebar-width: 12em;
     .inline-list__item:last-child::after {
       content: '';
     }
+
+    &__relative {
+      position: relative;
+    }
   }
 
   @media (min-width: 768px) {
