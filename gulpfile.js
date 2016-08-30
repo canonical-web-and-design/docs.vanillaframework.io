@@ -9,16 +9,16 @@ pkg = require('./package.json'),
 // main directories
 dir = {
   base: __dirname + '/',
-  src: './src/',
-  dest: './build/',
-  vf: './node_modules/vanilla-framework/'
+  src: 'src/',
+  dest: 'build/',
+  vf: 'node_modules/vanilla-framework/'
 },
 
 // template config
 templateConfig = {
   engine:     'handlebars',
-  directory:  './src/templates/',
-  partials:   './src/partials/',
+  directory:  'src/templates/',
+  partials:   'src/partials/',
   default:    'default.hbt'
 },
 
@@ -63,14 +63,19 @@ gulp.task('help', function() {
 
 // Static server
 gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: "./build",
-            noOpen: true
-        }
-    });
+    var files = [
+        "build/**/*.css",
+        "build/**/*.html"
+    ];
 
-    gulp.watch("./build/**/*.html").on("change", reload);
+    browserSync.init(
+        files,
+        {
+            server: {
+                baseDir: "./build",
+                noOpen: true
+            }
+    });
 });
 
 /* Import docs from Vanilla Framework dep */
