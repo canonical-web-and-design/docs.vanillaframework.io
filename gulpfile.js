@@ -64,7 +64,8 @@ gulp.task('help', function() {
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: "./build"
+            baseDir: "./build",
+            noOpen: true
         }
     });
 
