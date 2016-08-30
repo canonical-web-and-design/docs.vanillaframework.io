@@ -44,6 +44,7 @@ concat = require('gulp-concat'),
 browserSync = require('browser-sync').create(),
 reload      = browserSync.reload,
 ghPages = require('gulp-gh-pages'),
+plumber = require('gulp-plumber'),
 // Metalmsith - pattern library generation
 metalsmith = require('metalsmith'),
 markdown   = require('metalsmith-markdown'),
@@ -128,6 +129,7 @@ gulp.task('sass-build', function() {
 
 gulp.task('sass-develop', function() {
   return gulp.src(['scss/**/*.scss'])
+    .pipe(plumber())
     .pipe(sass({
       includePaths: ['node_modules']
     }))
