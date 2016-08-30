@@ -50,5 +50,8 @@
   "scripts": {
     "clean": "rm -r build; rm -r node_modules"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "dependencies": {
+    "docs-vanilla-theme": "^0.1.1-candidate"
+  }
 }
