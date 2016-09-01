@@ -1,10 +1,13 @@
 'use strict'
 
 var
+optional = require('optional'),
+
 // defaults
 consoleLog = false, // set true for metalsmith file and meta content logging
 devBuild = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production'),
 pkg = require('./package.json'),
+bsLocalConfig = optional('./browsersync.local.json'),
 
 // main directories
 dir = {
@@ -13,6 +16,17 @@ dir = {
   dest: 'build/',
   vf: 'node_modules/vanilla-framework/'
 },
+
+browsersyncConfig = {
+  server: {
+      baseDir: "./build"
+  }
+},
+
+browsersyncFiles = [
+    "build/**/*.css",
+    "build/**/*.html"
+],
 
 // template config
 templateConfig = {
@@ -40,6 +54,7 @@ gutil = require('gulp-util'),
 scsslint = require('gulp-scss-lint'),
 cssnano = require('gulp-cssnano'),
 util = require('util'),
+extend = require('extend'),
 concat = require('gulp-concat'),
 browserSync = require('browser-sync').create(),
 reload      = browserSync.reload,
@@ -63,19 +78,8 @@ gulp.task('help', function() {
 
 // Static server
 gulp.task('browser-sync', function() {
-    var files = [
-        "build/**/*.css",
-        "build/**/*.html"
-    ];
-
-    browserSync.init(
-        files,
-        {
-            server: {
-                baseDir: "./build",
-                noOpen: true
-            }
-    });
+  extend(browsersyncConfig, bsLocalConfig);
+  browserSync.init(browsersyncFiles, browsersyncConfig);
 });
 
 /* Import docs from Vanilla Framework dep */
