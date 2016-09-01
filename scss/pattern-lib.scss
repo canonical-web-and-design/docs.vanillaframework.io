@@ -2,4 +2,10 @@
 @include vanilla;
 
 @import 'docs-vanilla-theme/scss/theme';
-@include docs-vanilla-theme;
+@include docs-base;
+@include docs-header;
+@include docs-nav;
+@include docs-notes;
+@include docs-rows;
+@include docs-wrapper;
+@include docs-toc;
