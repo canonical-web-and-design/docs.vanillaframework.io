@@ -15,6 +15,9 @@ $sidebar-width: 12em;
       outline: 1px solid $color-mid-grey;
       margin-bottom: 1rem;
       padding: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
