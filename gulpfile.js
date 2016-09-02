@@ -1,10 +1,13 @@
 'use strict'
 
 var
+optional = require('optional'),
+
 // defaults
 consoleLog = false, // set true for metalsmith file and meta content logging
 devBuild = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production'),
 pkg = require('./package.json'),
+bsLocalConfig = optional('./browsersync.local.json'),
 
 // main directories
 dir = {
@@ -13,6 +16,18 @@ dir = {
   dest: 'build/',
   vf: 'node_modules/vanilla-framework/'
 },
+
+browsersyncConfig = {
+  server: {
+      baseDir: "./build",
+      open: false
+  }
+},
+
+browsersyncFiles = [
+    "build/**/*.css",
+    "build/**/*.html"
+],
 
 // template config
 templateConfig = {
@@ -34,17 +49,20 @@ siteMeta = {
 // modules
 gulp = require('gulp'),
 rename = require('gulp-rename'),
+del = require('del'),
 sass = require('gulp-sass'),
 autoprefixer = require('gulp-autoprefixer'),
 gutil = require('gulp-util'),
 scsslint = require('gulp-scss-lint'),
 cssnano = require('gulp-cssnano'),
 util = require('util'),
+extend = require('extend'),
 concat = require('gulp-concat'),
 browserSync = require('browser-sync').create(),
 reload      = browserSync.reload,
 ghPages = require('gulp-gh-pages'),
 plumber = require('gulp-plumber'),
+runSequence = require('run-sequence'),
 // Metalmsith - pattern library generation
 metalsmith = require('metalsmith'),
 markdown   = require('metalsmith-markdown'),
@@ -63,19 +81,8 @@ gulp.task('help', function() {
 
 // Static server
 gulp.task('browser-sync', function() {
-    var files = [
-        "build/**/*.css",
-        "build/**/*.html"
-    ];
-
-    browserSync.init(
-        files,
-        {
-            server: {
-                baseDir: "./build",
-                noOpen: true
-            }
-    });
+  extend(browsersyncConfig, bsLocalConfig);
+  browserSync.init(browsersyncFiles, browsersyncConfig);
 });
 
 /* Import docs from Vanilla Framework dep */
@@ -154,10 +161,27 @@ gulp.task('watch', function() {
   gulp.watch([dir.vf + 'docs/**/*.md', '*.md', 'partials/**/*.hbt', 'templates/**/*.hbt', 'pages/**/*.md'], ['pattern-library']);
 });
 
-gulp.task('develop', ['pattern-library', 'sass-develop', 'watch', 'browser-sync']);
+gulp.task('develop', ['clean'], function() {
+  runSequence(
+    ['pattern-library', 'sass-develop'],
+    'watch',
+    'browser-sync'
+)});
 
 gulp.task('test', ['sasslint']);
 
-gulp.task('build', ['pattern-library', 'sass-build']);
+gulp.task('build', ['clean'], function() {
+  runSequence(['pattern-library', 'sass-build']);
+});
+
+gulp.task('docs-clean', function() {
+  return del(['build/**/*.html']);
+});
+
+gulp.task('sass-clean', function() {
+  return del(['build/css/**/*.css']);
+});
+
+gulp.task('clean', ['sass-clean', 'docs-clean']);
 
 gulp.task('default', ['help']);

@@ -1,3 +1,5 @@
 /build/
 /node_modules/
 /src/docs/
+
+browsersync.local.json
