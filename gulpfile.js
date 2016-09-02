@@ -48,6 +48,7 @@ siteMeta = {
 // modules
 gulp = require('gulp'),
 rename = require('gulp-rename'),
+del = require('del'),
 sass = require('gulp-sass'),
 autoprefixer = require('gulp-autoprefixer'),
 gutil = require('gulp-util'),
@@ -60,6 +61,7 @@ browserSync = require('browser-sync').create(),
 reload      = browserSync.reload,
 ghPages = require('gulp-gh-pages'),
 plumber = require('gulp-plumber'),
+runSequence = require('run-sequence'),
 // Metalmsith - pattern library generation
 metalsmith = require('metalsmith'),
 markdown   = require('metalsmith-markdown'),
@@ -158,10 +160,27 @@ gulp.task('watch', function() {
   gulp.watch([dir.vf + 'docs/**/*.md', '*.md', 'partials/**/*.hbt', 'templates/**/*.hbt', 'pages/**/*.md'], ['pattern-library']);
 });
 
-gulp.task('develop', ['pattern-library', 'sass-develop', 'watch', 'browser-sync']);
+gulp.task('develop', ['clean'], function() {
+  runSequence(
+    ['pattern-library', 'sass-develop'],
+    'watch',
+    'browser-sync'
+)});
 
 gulp.task('test', ['sasslint']);
 
-gulp.task('build', ['pattern-library', 'sass-build']);
+gulp.task('build', ['clean'], function() {
+  runSequence(['pattern-library', 'sass-build']);
+});
+
+gulp.task('docs-clean', function() {
+  return del(['build/**/*.html']);
+});
+
+gulp.task('sass-clean', function() {
+  return del(['build/css/**/*.css']);
+});
+
+gulp.task('clean', ['sass-clean', 'docs-clean']);
 
 gulp.task('default', ['help']);
