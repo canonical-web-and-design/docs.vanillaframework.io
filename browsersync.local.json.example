@@ -1,5 +1,5 @@
 {
   "_": "https://www.browsersync.io/docs/options/",
-  "open": false,
+  "open": true,
   "tunnel": "localtunnelsubdomain"
 }

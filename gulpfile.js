@@ -19,7 +19,8 @@ dir = {
 
 browsersyncConfig = {
   server: {
-      baseDir: "./build"
+      baseDir: "./build",
+      open: false
   }
 },
 
