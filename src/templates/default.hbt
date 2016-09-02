@@ -3,8 +3,8 @@
     {{> head }}
     <body class="pl">
         {{> header }}
-        <div class="wrapper">
-            <nav class="pl__sidenav">
+        <div class="wrapper documentation__wrapper">
+            <nav class="documentation__nav" id="section-nav">
                 {{> sidebar }}
             </nav>
             <main id="main-content" class="inner-wrapper">
@@ -13,7 +13,6 @@
                     {{{ contents }}}
                 </div>
             </main>
-            <aside class="toc"></aside>
         </div>
         {{> footer }}
     </body>

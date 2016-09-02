@@ -1,9 +1,9 @@
 <!-- temp: one loops should do all this -->
 
-<nav class="documentation__nav">
+<div class="row row--nav">
   <ul>
       <li class="expanded">
-          <h3>Settings</h3>
+          <h4 class="header toggle-target">Settings</h4>
           <ul>
               {{#each collections.settings}}
                   <li>
@@ -15,7 +15,7 @@
           </ul>
       </li>
       <li class="collapsed">
-          <h3>Layout</h3>
+          <h4 class="header toggle-target">Layout</h4>
           <ul>
               {{#each collections.layout}}
                   <li>
@@ -27,7 +27,7 @@
           </ul>
       </li>
       <li class="collapsed">
-        <h3>Base</h3>
+        <h4 class="header toggle-target">Base</h4>
         <ul>
             {{#each collections.base}}
                 <li>
@@ -39,7 +39,7 @@
         </ul>
       </li>
       <li class="collapsed">
-          <h3>Patterns</h3>
+          <h4 class="header toggle-target">Patterns</h4>
           <ul>
               {{#each collections.patterns}}
                   <li>
@@ -51,7 +51,7 @@
           </ul>
       </li>
       <li class="collapsed">
-          <h3>Utilities</h3>
+          <h4 class="header toggle-target">Utilities</h4>
           <ul>
               {{#each collections.utilities}}
                   <li>
@@ -109,4 +109,4 @@
           }
       }
   </script>
-</nav>
+</div>
