@@ -2,25 +2,27 @@
   'use strict';
 
   var
-  optional = require('optional'),
+  browserSync = require('browser-sync').create(),
+  gulp  = require('gulp'),
+  fs     = require('fs'),
+  path   = require('path'),
+  tasks  = fs.readdirSync('./gulp/tasks/');
+
+  var sharedPlugins = {
+    browserSync: browserSync
+  };
+
+  tasks.forEach(function (task) {
+      require(path.join(__dirname, 'tasks', task))(gulp, sharedPlugins);
+  });
+
+  var
   paths = require('./paths'),
 
   // defaults
   consoleLog = false, // set true for metalsmith file and meta content logging
   devBuild = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production'),
   pkg = require('../package.json'),
-  bsLocalConfig = optional('./browsersync.local.json'),
-
-  browsersyncConfig = {
-    server: {
-        baseDir: paths.build.html
-    }
-  },
-
-  browsersyncFiles = [
-    paths.browserSync.css,
-    paths.browserSync.html
-  ],
 
   // template config
   templateConfig = {
@@ -40,7 +42,6 @@
   },
 
   // modules
-  gulp = require('gulp'),
   rename = require('gulp-rename'),
   del = require('del'),
   sass = require('gulp-sass'),
@@ -49,10 +50,7 @@
   scsslint = require('gulp-scss-lint'),
   cssnano = require('gulp-cssnano'),
   util = require('util'),
-  extend = require('extend'),
   concat = require('gulp-concat'),
-  browserSync = require('browser-sync').create(),
-  reload      = browserSync.reload,
   ghPages = require('gulp-gh-pages'),
   plumber = require('gulp-plumber'),
   runSequence = require('run-sequence'),
@@ -70,12 +68,6 @@
     console.log('watch - Watch sass files and generate unminified css');
     console.log('test - Lints Sass');
     console.log('deploy - Deploy sites to Github pages');
-  });
-
-  // Static server
-  gulp.task('browser-sync', function() {
-    extend(browsersyncConfig, bsLocalConfig);
-    browserSync.init(browsersyncFiles, browsersyncConfig);
   });
 
   /* Import docs from Vanilla Framework dep */
