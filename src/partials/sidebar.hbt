@@ -66,20 +66,15 @@
 
   <script>
       function expandCollapse(clickEvent) {
-          var item = clickEvent.target;
-          var link = item.querySelector('[href]');
-          var linkWidth = link.offsetWidth;
-          var clickOffset = clickEvent.offsetX;
-
-          if (clickOffset > linkWidth) {
-              collapsed = ! item.classList.toggle('expanded');
-              item.classList.toggle('collapsed', collapsed);
-          }
+        var heading = clickEvent.target;
+        var item = heading.parentNode;
+        collapsed = ! item.classList.toggle('expanded');
+        item.classList.toggle('collapsed', collapsed);
       }
 
       var items = document.querySelectorAll('.documentation__nav ul li');
 
-      for(var num = 0; num < items.length; num++) {
+      for (var num = 0; num < items.length; num++) {
           var item = items[num];
           var link = item.querySelector('[href]');
 
@@ -105,7 +100,10 @@
                   item.classList.add('collapsed');
               }
 
-              item.addEventListener('click', expandCollapse);
+              var toggleTarget = item.querySelector('.toggle-target');
+              if (toggleTarget) {
+                toggleTarget.addEventListener('click', expandCollapse);
+              }
           }
       }
   </script>
