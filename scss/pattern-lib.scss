@@ -6,6 +6,19 @@
 
 $sidebar-width: 12em;
 
+.grid_outline {
+
+  [class^='col-'] {
+
+    span {
+      display: block;
+      outline: 1px solid $color-mid-grey;
+      margin-bottom: 1rem;
+      padding: 1rem;
+    }
+  }
+}
+
 .pl-header {
   width: 100%;
   background: $color-cool-grey;
