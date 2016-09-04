@@ -19,42 +19,13 @@
   var
   paths = require('./paths'),
 
-  // defaults
-  consoleLog = false, // set true for metalsmith file and meta content logging
-  devBuild = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production'),
-  pkg = require('../package.json'),
-
-  // template config
-  templateConfig = {
-    engine:     'handlebars',
-    directory:  paths.metalsmith.templates,
-    partials:   paths.metalsmith.partials,
-    default:    'default.hbt'
-  },
-
-  siteMeta = {
-    devBuild: devBuild,
-    version:  pkg.version,
-    name:     'Vanilla Framework',
-    desc:     'A living Pattern Library showcasing Vanilla Framework',
-    author:   'Canonical Web Team',
-    contact:  'https://mobile.twitter.com/vanillaframewrk'
-  },
-
   // modules
   rename = require('gulp-rename'),
-  del = require('del'),
   gutil = require('gulp-util'),
   util = require('util'),
   concat = require('gulp-concat'),
   ghPages = require('gulp-gh-pages'),
-  runSequence = require('run-sequence'),
-  // Metalmsith - pattern library generation
-  metalsmith = require('metalsmith'),
-  markdown   = require('metalsmith-markdown'),
-  layouts = require('metalsmith-layouts'),
-  collections = require('metalsmith-collections'),
-  permalinks = require('metalsmith-permalinks');
+  runSequence = require('run-sequence');
 
   /* Gulp instructions start here */
   gulp.task('help', function() {
@@ -65,43 +36,11 @@
     console.log('deploy - Deploy sites to Github pages');
   });
 
-  /* Import docs from Vanilla Framework dep */
-  gulp.task('import-docs', function() {
-    gulp.src([paths.src.vfDocs]).pipe(gulp.dest(paths.import.docs));
-  });
-
-  /* Generate Pattern Library with Metalsmith */
-  gulp.task('pattern-library', ['import-docs'], function() {
-    metalsmith(paths.metalsmith.base)
-      .clean(!devBuild) // clean folder before a production build
-      .source(paths.metalsmith.source) // source folder (src/)
-      .destination(paths.metalsmith.destination) // build folder (build/)
-      .use(collections({
-        pages: {
-          reverse: true
-        }
-      }))
-      .use(markdown()) // convert markdown to html
-      .use(permalinks({
-          pattern: ':collection/:title'
-      }))
-      .use(layouts(templateConfig)) // layout templating
-      .build(function (err) { // build or error log
-          if(err) console.log(err);
-      });
-  });
-
   gulp.task('deploy', ['build'], function() {
     return gulp.src(paths.deploy.pages).pipe(ghPages());
   });
 
-  gulp.task('watch', ['sass-watch'], function() {
-    gulp.watch([
-      paths.src.md,
-      paths.src.hbt,
-      paths.src.vfDocs
-    ], ['pattern-library']);
-  });
+  gulp.task('watch', ['metalsmith-watch', 'sass-watch']);
 
   gulp.task('develop', ['clean'], function() {
     runSequence(
@@ -113,14 +52,10 @@
   gulp.task('test', ['sasslint']);
 
   gulp.task('build', ['clean'], function() {
-    runSequence(['pattern-library', 'sass-build']);
+    runSequence(['metalsmith', 'sass-build']);
   });
 
-  gulp.task('docs-clean', function() {
-    return del([paths.build.files.html]);
-  });
-
-  gulp.task('clean', ['sass-clean', 'docs-clean']);
+  gulp.task('clean', ['metalsmith-clean', 'sass-clean']);
 
   gulp.task('default', ['help']);
 }());

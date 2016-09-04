@@ -29,6 +29,7 @@
       js: build + '/js',
       files: {
         css: build + '/css/**/*.css',
+        hbt: build + '/**/*.hbt',
         html: build + '/**/*.html',
         img: build + '/img/**/*',
         js: build + '/js/**/*.js'
@@ -51,7 +52,8 @@
       source: src + '/',
       destination: build + '/',
       partials: src + '/partials/',
-      templates: src + '/templates/'
+      templates: src + '/templates/',
+      vfDocs: vanillaFramework + '/docs/'
     },
 
     sass: {
