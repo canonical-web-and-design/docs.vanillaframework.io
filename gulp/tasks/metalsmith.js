@@ -37,11 +37,11 @@
 
   module.exports = function(gulp, plugins) {
 
-    gulp.task('metalsmith-importdocs', function() {
+    gulp.task('metalsmith:import-docs', function() {
       return gulp.src([paths.src.vfDocs]).pipe(gulp.dest(paths.import.docs));
     });
 
-    gulp.task('metalsmith', ['metalsmith-importdocs'], function() {
+    gulp.task('metalsmith', ['metalsmith:import-docs'], function() {
       metalsmith(paths.metalsmith.base)
         .source(
           paths.metalsmith.source,
@@ -58,14 +58,14 @@
         });
     });
 
-    gulp.task('metalsmith-clean', function() {
+    gulp.task('metalsmith:clean', function() {
       return del([
         paths.build.files.hbt,
         paths.build.files.html
       ]);
     });
 
-    gulp.task('metalsmith-watch', function() {
+    gulp.task('metalsmith:watch', function() {
       gulp.watch([
         paths.src.md,
         paths.src.hbt,

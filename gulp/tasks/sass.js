@@ -28,14 +28,14 @@
         .pipe(scsslint.failReporter());
     });
 
-    gulp.task('sass-build', function() {
+    gulp.task('sass', function() {
       return gulp.src(paths.src.sass)
         .pipe(sass(sassOptions))
         .pipe(autoprefixer(autoprefixerOptions))
         .pipe(gulp.dest(paths.build.css));
     });
 
-    gulp.task('sass-develop', function() {
+    gulp.task('sass:develop', function() {
       gulp.src([paths.src.sass])
         .pipe(plumber())
         .pipe(sass(sassOptions))
@@ -44,14 +44,14 @@
         .pipe(plugins.browserSync.stream());
     });
 
-    gulp.task('sass-watch', function() {
+    gulp.task('sass:watch', function() {
       gulp.watch([
         paths.src.sass,
         paths.src.vfSass
-      ], ['sass-develop']);
+      ], ['sass:develop']);
     });
 
-    gulp.task('sass-clean', function() {
+    gulp.task('sass:clean', function() {
       return del([paths.build.files.css]);
     });
 

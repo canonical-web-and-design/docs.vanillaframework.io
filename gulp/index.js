@@ -20,7 +20,7 @@
 
 
   gulp.task('help', function() {
-    console.log('sass-build - Generate the min and unminified css from sass');
+    console.log('build - Generate Pattern Library and assets');
     console.log('develop - Generate Pattern Library and watch assets');
     console.log('watch - Watch sass files and generate unminified css');
     console.log('test - Lints Sass');
@@ -28,20 +28,20 @@
   });
 
   gulp.task('build', ['clean'], function() {
-    return runSequence(['metalsmith', 'sass-build']);
+    return runSequence(['metalsmith', 'sass']);
   });
 
-  gulp.task('clean', ['metalsmith-clean', 'sass-clean']);
+  gulp.task('clean', ['metalsmith:clean', 'sass:clean']);
 
   gulp.task('deploy', function() {
-    return runSequence(['build', 'deploy-githubpages']);
+    return runSequence(['build', 'deploy:github-pages']);
   });
 
   gulp.task('develop', function() {
     return runSequence(
       'clean',
       'metalsmith',
-      'sass-develop',
+      'sass:develop',
       'watch',
       'browser-sync'
     );
@@ -49,7 +49,7 @@
 
   gulp.task('test', ['sasslint']);
 
-  gulp.task('watch', ['metalsmith-watch', 'sass-watch']);
+  gulp.task('watch', ['metalsmith:watch', 'sass:watch']);
 
   gulp.task('default', ['help']);
 }());
