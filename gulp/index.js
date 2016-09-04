@@ -44,15 +44,10 @@
   // modules
   rename = require('gulp-rename'),
   del = require('del'),
-  sass = require('gulp-sass'),
-  autoprefixer = require('gulp-autoprefixer'),
   gutil = require('gulp-util'),
-  scsslint = require('gulp-scss-lint'),
-  cssnano = require('gulp-cssnano'),
   util = require('util'),
   concat = require('gulp-concat'),
   ghPages = require('gulp-gh-pages'),
-  plumber = require('gulp-plumber'),
   runSequence = require('run-sequence'),
   // Metalmsith - pattern library generation
   metalsmith = require('metalsmith'),
@@ -96,54 +91,11 @@
       });
   });
 
-  /* Helper functions */
-  function throwSassError(sassError) {
-    throw new gutil.PluginError({
-      plugin: 'sass',
-      message: util.format(
-        "Sass error: '%s' on line %s of %s",
-        sassError.message,
-        sassError.line,
-        sassError.file
-      )
-    });
-  }
-
-  gulp.task('sasslint', function() {
-    return gulp.src(paths.src.sass)
-      .pipe(scsslint())
-      .pipe(scsslint.failReporter());
-  });
-
-  gulp.task('sass-build', function() {
-    return gulp.src(paths.src.sass)
-      .pipe(sass({
-        includePaths: [paths.sass.includes.vfNode]
-      }))
-      .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-      .pipe(gulp.dest(paths.build.css));
-  });
-
-  gulp.task('sass-develop', function() {
-    return gulp.src([paths.src.sass])
-      .pipe(plumber())
-      .pipe(sass({
-        includePaths: [paths.sass.includes.vfNode]
-      }))
-      .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-      .pipe(gulp.dest(paths.build.css))
-      .pipe(browserSync.stream());
-  });
-
   gulp.task('deploy', ['build'], function() {
     return gulp.src(paths.deploy.pages).pipe(ghPages());
   });
 
-  gulp.task('watch', function() {
-    gulp.watch([
-      paths.src.sass,
-      paths.src.vfSass
-    ], ['sass-develop']);
+  gulp.task('watch', ['sass-watch'], function() {
     gulp.watch([
       paths.src.md,
       paths.src.hbt,
@@ -166,10 +118,6 @@
 
   gulp.task('docs-clean', function() {
     return del([paths.build.files.html]);
-  });
-
-  gulp.task('sass-clean', function() {
-    return del([paths.build.files.css]);
   });
 
   gulp.task('clean', ['sass-clean', 'docs-clean']);
