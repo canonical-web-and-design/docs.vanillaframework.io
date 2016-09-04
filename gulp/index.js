@@ -36,8 +36,8 @@
     console.log('deploy - Deploy sites to Github pages');
   });
 
-  gulp.task('deploy', ['build'], function() {
-    return gulp.src(paths.deploy.pages).pipe(ghPages());
+  gulp.task('deploy', function() {
+    return runSequence(['build', 'deploy-githubpages']);
   });
 
   gulp.task('watch', ['metalsmith-watch', 'sass-watch']);
