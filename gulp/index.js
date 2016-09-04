@@ -3,10 +3,12 @@
 
   var
   browserSync = require('browser-sync').create(),
-  gulp  = require('gulp'),
-  fs     = require('fs'),
-  path   = require('path'),
-  tasks  = fs.readdirSync('./gulp/tasks/');
+  gulp = require('gulp'),
+  fs = require('fs'),
+  path = require('path'),
+  paths = require('./paths'),
+  runSequence = require('run-sequence'),
+  tasks = fs.readdirSync('./gulp/tasks/');
 
   var sharedPlugins = {
     browserSync: browserSync
@@ -16,18 +18,7 @@
       require(path.join(__dirname, 'tasks', task))(gulp, sharedPlugins);
   });
 
-  var
-  paths = require('./paths'),
 
-  // modules
-  rename = require('gulp-rename'),
-  gutil = require('gulp-util'),
-  util = require('util'),
-  concat = require('gulp-concat'),
-  ghPages = require('gulp-gh-pages'),
-  runSequence = require('run-sequence');
-
-  /* Gulp instructions start here */
   gulp.task('help', function() {
     console.log('sass-build - Generate the min and unminified css from sass');
     console.log('develop - Generate Pattern Library and watch assets');
@@ -36,26 +27,29 @@
     console.log('deploy - Deploy sites to Github pages');
   });
 
+  gulp.task('build', ['clean'], function() {
+    return runSequence(['metalsmith', 'sass-build']);
+  });
+
+  gulp.task('clean', ['metalsmith-clean', 'sass-clean']);
+
   gulp.task('deploy', function() {
     return runSequence(['build', 'deploy-githubpages']);
   });
 
-  gulp.task('watch', ['metalsmith-watch', 'sass-watch']);
-
-  gulp.task('develop', ['clean'], function() {
-    runSequence(
-      ['pattern-library', 'sass-develop'],
+  gulp.task('develop', function() {
+    return runSequence(
+      'clean',
+      'metalsmith',
+      'sass-develop',
       'watch',
       'browser-sync'
-  );});
+    );
+  });
 
   gulp.task('test', ['sasslint']);
 
-  gulp.task('build', ['clean'], function() {
-    runSequence(['metalsmith', 'sass-build']);
-  });
-
-  gulp.task('clean', ['metalsmith-clean', 'sass-clean']);
+  gulp.task('watch', ['metalsmith-watch', 'sass-watch']);
 
   gulp.task('default', ['help']);
 }());
