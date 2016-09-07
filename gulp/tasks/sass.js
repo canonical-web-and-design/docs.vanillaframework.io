@@ -47,7 +47,8 @@
     gulp.task('sass:watch', function() {
       gulp.watch([
         paths.src.sass,
-        paths.src.vfSass
+        paths.src.vfSass,
+        paths.src.vfTheme
       ], ['sass:develop']);
     });
 
