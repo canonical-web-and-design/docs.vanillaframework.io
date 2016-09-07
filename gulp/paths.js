@@ -15,7 +15,7 @@
       hbt: src + '/**/*.hbt',
       img: src + '/img/**/*',
       js: src + '/js/**/*.js',
-      md: src + '/src/**/*.md',
+      md: src + '/**/*.md',
       sass: 'scss/**/*.scss',
       vfDocs: vanillaFramework + '/docs/**/*.md',
       vfSass: 'scss/**/*.scss'

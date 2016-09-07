@@ -51,8 +51,9 @@
           paths.metalsmith.source,
           paths.metalsmith.vfDocs
         )
-        .use(metalsmithFilter(filterConfig))
+        .clean(false)
         .destination(paths.metalsmith.destination)
+        .use(metalsmithFilter(filterConfig))
         .use(metalsmithCollections(collectionsConfig))
         .use(metalsmithMarkdown())
         .use(metalsmithPermalinks(permalinksConfig))
