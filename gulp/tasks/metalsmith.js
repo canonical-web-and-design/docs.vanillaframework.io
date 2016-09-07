@@ -37,7 +37,11 @@
 
   module.exports = function(gulp, plugins) {
 
-    gulp.task('metalsmith:import-docs', function() {
+    gulp.task('metalsmith:clean-docs', function() {
+      return del(paths.import.docs)
+    });
+
+    gulp.task('metalsmith:import-docs', ['metalsmith:clean-docs'], function() {
       return gulp.src([paths.src.vfDocs]).pipe(gulp.dest(paths.import.docs));
     });
 
