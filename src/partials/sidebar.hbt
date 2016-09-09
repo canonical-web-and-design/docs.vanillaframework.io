@@ -1,56 +1,110 @@
 <!-- temp: one loops should do all this -->
 
-<h3>Settings</h3>
-<ul class="sidenav-list">
-    {{#each collections.settings}}
-        <li class="sidenav-list__item">
-            <a class="sidenav-list__link" href="/{{this.path}}">
-                {{this.title}}
-            </a>
-        </li>
-    {{/each}}
-</ul>
+<div class="row row--nav">
+  <ul>
+      <li class="expanded">
+          <h4 class="header toggle-target">Settings</h4>
+          <ul>
+              {{#each collections.settings}}
+                  <li>
+                      <a href="/{{this.path}}">
+                          {{this.title}}
+                      </a>
+                  </li>
+              {{/each}}
+          </ul>
+      </li>
+      <li class="collapsed">
+          <h4 class="header toggle-target">Layout</h4>
+          <ul>
+              {{#each collections.layout}}
+                  <li>
+                      <a href="/{{this.path}}">
+                          {{this.title}}
+                      </a>
+                  </li>
+              {{/each}}
+          </ul>
+      </li>
+      <li class="collapsed">
+        <h4 class="header toggle-target">Base</h4>
+        <ul>
+            {{#each collections.base}}
+                <li>
+                    <a href="/{{this.path}}">
+                        {{this.title}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+      </li>
+      <li class="collapsed">
+          <h4 class="header toggle-target">Patterns</h4>
+          <ul>
+              {{#each collections.patterns}}
+                  <li>
+                      <a href="/{{this.path}}">
+                          {{this.title}}
+                      </a>
+                  </li>
+              {{/each}}
+          </ul>
+      </li>
+      <li class="collapsed">
+          <h4 class="header toggle-target">Utilities</h4>
+          <ul>
+              {{#each collections.utilities}}
+                  <li>
+                      <a href="/{{this.path}}">
+                          {{this.title}}
+                      </a>
+                  </li>
+              {{/each}}
+          </ul>
+      </li>
+  </ul>
 
-<h3>Layout</h3>
-<ul class="sidenav-list">
-    {{#each collections.layout}}
-        <li class="sidenav-list__item">
-            <a class="sidenav-list__link" href="/{{this.path}}">
-                {{this.title}}
-            </a>
-        </li>
-    {{/each}}
-</ul>
+  <script>
+      function expandCollapse(clickEvent) {
+        var heading = clickEvent.target;
+        var item = heading.parentNode;
+        collapsed = ! item.classList.toggle('expanded');
+        item.classList.toggle('collapsed', collapsed);
+      }
 
-<h3>Base</h3>
-<ul class="sidenav-list">
-    {{#each collections.base}}
-        <li class="sidenav-list__item">
-            <a class="sidenav-list__link" href="/{{this.path}}">
-                {{this.title}}
-            </a>
-        </li>
-    {{/each}}
-</ul>
+      var items = document.querySelectorAll('.documentation__nav ul li');
 
-<h3>Patterns</h3>
-<ul class="sidenav-list">
-    {{#each collections.patterns}}
-        <li class="sidenav-list__item">
-            <a class="sidenav-list__link" href="/{{this.path}}">
-                {{this.title}}
-            </a>
-        </li>
-    {{/each}}
-</ul>
+      for (var num = 0; num < items.length; num++) {
+          var item = items[num];
+          var link = item.querySelector('[href]');
 
-<h3>Utilities</h3>
-<ul class="sidenav-list">
-    {{#each collections.utilities}}
-        <li class="sidenav-list__item">
-            <a class="sidenav-list__link" href="/{{this.path}}">
-                {{this.title}}
-            </a>
-        </li>
-    {{/each}}
-</ul>
+          if (! link) {continue;}
+
+          // Get paths, removing leading and trailing slashes for consistency
+          linkPath = link.pathname.replace(/(^\/|\/$)/g, "");
+          currentPath = location.pathname.replace(/(^\/|\/$)/g, "");
+
+          // Make current navigation item appear active
+          // @TODO: Replace this with a static JS-less solution
+          //        once we have a more intelligent
+          //        docs navigation mechanism.
+          if (linkPath == currentPath) {
+              link.classList.add('active');
+          }
+
+          // For lists with child lists, add expand/collapse functionality
+          if (item.querySelector('ul')) {
+              if (currentPath.startsWith(linkPath)) {
+                  item.classList.add('expanded');
+              } else {
+                  item.classList.add('collapsed');
+              }
+
+              var toggleTarget = item.querySelector('.toggle-target');
+              if (toggleTarget) {
+                toggleTarget.addEventListener('click', expandCollapse);
+              }
+          }
+      }
+  </script>
+</div>

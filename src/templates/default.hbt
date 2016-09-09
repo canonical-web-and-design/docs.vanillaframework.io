@@ -3,14 +3,16 @@
     {{> head }}
     <body class="pl">
         {{> header }}
-        <div class="pl__container">
-            <main class="pl__content">
-                <h1 class="pl__heading">{{title}}</h1>
-                {{{ contents }}}
-            </main>
-            <nav class="pl__sidenav">
+        <div class="wrapper documentation__wrapper">
+            <nav class="documentation__nav" id="section-nav">
                 {{> sidebar }}
             </nav>
+            <main id="main-content" class="inner-wrapper">
+                <div class="row">
+                    <h1>{{title}}</h1>
+                    {{{ contents }}}
+                </div>
+            </main>
         </div>
         {{> footer }}
     </body>

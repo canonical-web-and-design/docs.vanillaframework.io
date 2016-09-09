@@ -1,7 +1,7 @@
-<footer class="pl__footer" role="contentinfo">
-    &copy; 2016 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.
-    <ul class="inline-list">
-        <li class="inline-list__item"><a href="http://www.ubuntu.com/legal">Legal Info</a></li>
-        <li class="inline-list__item"><a href="https://github.com/ubuntudesign/vanilla-framework/issues/new">Report a bug</a></li>
-    </ul>
+<footer class="global clearfix wrapper">
+    <nav id="main-navigation" class="clearfix inner-wrapper">
+        <div class="legal clearfix">
+            <p class="twelve-col">&copy; 2016 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</p>
+        </div>
+    </nav>
 </footer>
