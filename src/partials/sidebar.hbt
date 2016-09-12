@@ -1,110 +1,66 @@
-<!-- temp: one loops should do all this -->
-
-<div class="row row--nav">
-  <ul>
-      <li class="expanded">
-          <h4 class="header toggle-target">Settings</h4>
-          <ul>
-              {{#each collections.settings}}
-                  <li>
-                      <a href="/{{this.path}}">
-                          {{this.title}}
-                      </a>
-                  </li>
-              {{/each}}
-          </ul>
-      </li>
-      <li class="collapsed">
-          <h4 class="header toggle-target">Layout</h4>
-          <ul>
-              {{#each collections.layout}}
-                  <li>
-                      <a href="/{{this.path}}">
-                          {{this.title}}
-                      </a>
-                  </li>
-              {{/each}}
-          </ul>
-      </li>
-      <li class="collapsed">
-        <h4 class="header toggle-target">Base</h4>
-        <ul>
-            {{#each collections.base}}
-                <li>
-                    <a href="/{{this.path}}">
-                        {{this.title}}
-                    </a>
-                </li>
-            {{/each}}
-        </ul>
-      </li>
-      <li class="collapsed">
-          <h4 class="header toggle-target">Patterns</h4>
-          <ul>
-              {{#each collections.patterns}}
-                  <li>
-                      <a href="/{{this.path}}">
-                          {{this.title}}
-                      </a>
-                  </li>
-              {{/each}}
-          </ul>
-      </li>
-      <li class="collapsed">
-          <h4 class="header toggle-target">Utilities</h4>
-          <ul>
-              {{#each collections.utilities}}
-                  <li>
-                      <a href="/{{this.path}}">
-                          {{this.title}}
-                      </a>
-                  </li>
-              {{/each}}
-          </ul>
-      </li>
-  </ul>
-
-  <script>
-      function expandCollapse(clickEvent) {
-        var heading = clickEvent.target;
-        var item = heading.parentNode;
-        collapsed = ! item.classList.toggle('expanded');
-        item.classList.toggle('collapsed', collapsed);
-      }
-
-      var items = document.querySelectorAll('.documentation__nav ul li');
-
-      for (var num = 0; num < items.length; num++) {
-          var item = items[num];
-          var link = item.querySelector('[href]');
-
-          if (! link) {continue;}
-
-          // Get paths, removing leading and trailing slashes for consistency
-          linkPath = link.pathname.replace(/(^\/|\/$)/g, "");
-          currentPath = location.pathname.replace(/(^\/|\/$)/g, "");
-
-          // Make current navigation item appear active
-          // @TODO: Replace this with a static JS-less solution
-          //        once we have a more intelligent
-          //        docs navigation mechanism.
-          if (linkPath == currentPath) {
-              link.classList.add('active');
-          }
-
-          // For lists with child lists, add expand/collapse functionality
-          if (item.querySelector('ul')) {
-              if (currentPath.startsWith(linkPath)) {
-                  item.classList.add('expanded');
-              } else {
-                  item.classList.add('collapsed');
-              }
-
-              var toggleTarget = item.querySelector('.toggle-target');
-              if (toggleTarget) {
-                toggleTarget.addEventListener('click', expandCollapse);
-              }
-          }
-      }
-  </script>
-</div>
+<ul class="p-sidebar-nav__list">
+    <li class="p-sidebar-nav__group">
+        <a href="#settings">
+            <h4 class="p-sidebar-nav__header">Settings</h4>
+        </a>
+        <section id="settings" class="p-sidebar-nav__section">
+            <ul class="p-sidebar-nav__list">
+                {{#each collections.settings}}
+                    <li>
+                        <a href="/{{this.path}}">
+                            {{this.title}}
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </section>
+    </li>
+    <li class="p-sidebar-nav__group">
+        <a href="#base">
+            <h4 class="p-sidebar-nav__header">Base</h4>
+        </a>
+        <section id="base" class="p-sidebar-nav__section">
+            <ul class="p-sidebar-nav__list">
+                {{#each collections.base}}
+                    <li>
+                        <a href="/{{this.path}}">
+                            {{this.title}}
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </section>
+    </li>
+    <li class="p-sidebar-nav__group">
+        <a href="#patterns">
+            <h4 class="p-sidebar-nav__header">Patterns</h4>
+        </a>
+        <section id="patterns" class="p-sidebar-nav__section">
+            <ul class="p-sidebar-nav__list">
+                {{#each collections.patterns}}
+                    <li>
+                        <a href="/{{this.path}}">
+                            {{this.title}}
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </section>
+    </li>
+    <li class="p-sidebar-nav__group">
+        <a href="#utilities">
+            <h4 class="p-sidebar-nav__header">Utilities</h4>
+        </a>
+        <section id="utilities" class="p-sidebar-nav__section">
+            <ul class="p-sidebar-nav__list">
+                {{#each collections.utilities}}
+                    <li>
+                        <a href="/{{this.path}}">
+                            {{this.title}}
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </section>
+    </li>
+</ul>
