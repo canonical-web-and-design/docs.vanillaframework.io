@@ -1,17 +1,16 @@
 <!doctype html>
 <html lang="en">
     {{> head }}
-    <body>
+    <body class="theme">
         {{> header }}
-
         <div class="row">
-            <div class="col-3">
-                <nav class="p-sidebar-nav">
-                    {{> sidebar }}
-                </nav>
-            </div>
-            <div class="col-9 l-col-main">
-                <div class="col-7">
+            <div class="theme__wrap">
+                <div class="col-3 theme__sidebar">
+                    <nav class="p-sidebar-nav">
+                        {{> sidebar }}
+                    </nav>
+                </div>
+                <div class="col-7 theme__main">
                     <main id="main-content">
                         <h1>{{title}}</h1>
                         {{{ contents }}}

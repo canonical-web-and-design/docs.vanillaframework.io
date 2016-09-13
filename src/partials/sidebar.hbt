@@ -64,3 +64,6 @@
         </section>
     </li>
 </ul>
+<section>
+    <a class="p-sidebar-nav__top" href="#">Back to top</a>
+</section>

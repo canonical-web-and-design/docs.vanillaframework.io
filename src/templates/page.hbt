@@ -11,12 +11,10 @@
                 </nav>
             </div>
             <div class="col-9 l-col-main">
-                <div class="col-7">
-                    <main id="main-content">
-                        <h1>{{title}}</h1>
-                        {{{ contents }}}
-                    </main>
-                </div>
+                <main id="main-content">
+                    <h1>{{title}}</h1>
+                    {{{ contents }}}
+                </main>
             </div>
         </div>
         {{> footer }}
