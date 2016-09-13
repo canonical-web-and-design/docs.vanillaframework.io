@@ -12,7 +12,6 @@ port=3000
 image_name="ubuntudesign/node:v1.0.7"
 volume_filename=".packages-volume-name"
 volume_name=
-commands=$@
 
 ##
 # Check docker is installed correctly
@@ -40,6 +39,7 @@ while [[ -n "${1:-}" ]] && ( [[ "${1:0:1}" == "-" ]] || [[ "${1:0}" == "clean" ]
     invalid() {
         echo "Command not recognised."
         commands="usage"
+        break
     }
 
     case $key in
@@ -81,11 +81,15 @@ while [[ -n "${1:-}" ]] && ( [[ "${1:0:1}" == "-" ]] || [[ "${1:0}" == "clean" ]
     shift
 done
 
+if [ -z "${commands:-}" ]; then
+    commands=$@
+fi
+
 if [ -n "${override_paths:-}" ]; then
   overrides=""
   for path in "${override_paths[@]}"; do
     module_name=$(basename $path)
-    overrides+=" --volume '$path':/packages/overrides/$module_name"
+    overrides+=" --volume $path:/packages/overrides/$module_name"
   done
 fi
 
