@@ -4,7 +4,7 @@
             vanilla framework
         </a>
     </div>
-    <nav id="main-navigation" class="p-navigation__nav" role="navigation">
+    <nav id="main-navigation" class="p-navigation__nav">
         <span class="u-off-screen">
             <a href="#main-content">Jump to main content</a>
         </span>
