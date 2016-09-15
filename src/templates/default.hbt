@@ -1,18 +1,22 @@
 <!doctype html>
 <html lang="en">
     {{> head }}
-    <body class="pl">
+    <body class="theme">
         {{> header }}
-        <div class="wrapper documentation__wrapper">
-            <nav class="documentation__nav" id="section-nav">
-                {{> sidebar }}
-            </nav>
-            <main id="main-content" class="inner-wrapper">
-                <div class="row">
-                    <h1>{{title}}</h1>
-                    {{{ contents }}}
+        <div class="row">
+            <div class="theme__wrap">
+                <div class="col-3 theme__sidebar">
+                    <nav class="p-sidebar-nav">
+                        {{> sidebar }}
+                    </nav>
                 </div>
-            </main>
+                <div class="col-7 theme__main">
+                    <main id="main-content">
+                        <h1>{{title}}</h1>
+                        {{{ contents }}}
+                    </main>
+                </div>
+            </div>
         </div>
         {{> footer }}
     </body>

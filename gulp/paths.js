@@ -4,7 +4,8 @@
   var
   build = 'build',
   src = 'src',
-  vanillaFramework = 'node_modules/vanilla-framework';
+  vanillaFramework = 'node_modules/vanilla-framework',
+  vanillaTheme = 'node_modules/docs-vanilla-theme';
 
   module.exports = {
     import: {
@@ -18,7 +19,8 @@
       md: src + '/**/*.md',
       sass: 'scss/**/*.scss',
       vfDocs: vanillaFramework + '/docs/**/*.md',
-      vfSass: 'scss/**/*.scss'
+      vfSass: 'scss/**/*.scss',
+      vfTheme: vanillaTheme + 'scss/**/*.scss'
     },
 
     build: {
