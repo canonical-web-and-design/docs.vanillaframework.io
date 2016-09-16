@@ -10,11 +10,11 @@
                     {{> sidebar }}
                 </nav>
             </div>
-            <div class="col-9 l-col-main">
-                <main id="main-content">
+            <div class="col-9 theme__main">
+                <div id="main-content" class="theme__inner">
                     <h1>{{title}}</h1>
                     {{{ contents }}}
-                </main>
+                </div>
             </div>
         </div>
         {{> footer }}
