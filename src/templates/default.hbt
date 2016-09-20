@@ -10,7 +10,7 @@
                         {{> sidebar }}
                     </nav>
                 </div>
-                <div class="col-7 theme__main">
+                <div class="col-12 theme__main">
                     <main id="main-content" class="theme__inner">
                         <h1>{{title}}</h1>
                         {{{ contents }}}
