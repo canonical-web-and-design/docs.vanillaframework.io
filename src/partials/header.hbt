@@ -1,10 +1,12 @@
 <header class="p-navigation" role="banner">
     <div class="p-navigation__logo">
         <a class="p-navigation__link" href="#">
-            vanilla framework
+            Vanilla
         </a>
     </div>
-    <nav id="main-navigation" class="p-navigation__nav">
+    <a href="#navigation" class="p-navigation__toggle--open" title="menu">Menu</a>
+    <a href="#navigation-closed" class="p-navigation__toggle--close" title="close menu">Menu</a>
+    <nav class="p-navigation__nav">
         <span class="u-off-screen">
             <a href="#main-content">Jump to main content</a>
         </span>
