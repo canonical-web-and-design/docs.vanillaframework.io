@@ -1,6 +1,6 @@
 <header class="p-navigation" role="banner">
     <div class="p-navigation__logo">
-        <a class="p-navigation__link" href="#">
+        <a class="p-navigation__link" href="/">
             Vanilla framework
         </a>
     </div>
