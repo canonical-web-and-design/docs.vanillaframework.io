@@ -17,7 +17,7 @@ If you wish to make iterative changes to Vanilla Framework source code and then 
 
 3. This project will now reference your local copy of Vanilla Framework instead of the global NPM module.
 
-4. If you open two separate Terminal windows for each project and run `gulp develop` in both - any changes you make to Vanilla Framework should be immediately reflected in this project at `http://localhost:3000`
+4. If you open two separate Terminal windows for each project and make sure they are installed with `npm install`. Once installed run `gulp develop` in both - any changes you make to Vanilla Framework should be immediately reflected in this project at `http://localhost:3000`
 
 License
 ---
