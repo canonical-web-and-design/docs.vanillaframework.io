@@ -7,7 +7,7 @@
             <ul class="p-sidebar-nav__list">
                 {{#each collections.settings}}
                     <li>
-                        <a class="p-sidebar-nav__link" href="/{{this.path}}">
+                        <a class="p-link--soft" href="/{{this.path}}">
                             {{this.title}}
                         </a>
                     </li>
@@ -23,7 +23,7 @@
             <ul class="p-sidebar-nav__list">
                 {{#each collections.base}}
                     <li>
-                        <a class="p-sidebar-nav__link" href="/{{this.path}}">
+                        <a class="p-link--soft" href="/{{this.path}}">
                             {{this.title}}
                         </a>
                     </li>
@@ -39,7 +39,7 @@
             <ul class="p-sidebar-nav__list">
                 {{#each collections.patterns}}
                     <li>
-                        <a class="p-sidebar-nav__link" href="/{{this.path}}">
+                        <a class="p-link--soft" href="/{{this.path}}">
                             {{this.title}}
                         </a>
                     </li>
@@ -55,7 +55,7 @@
             <ul class="p-sidebar-nav__list">
                 {{#each collections.utilities}}
                     <li>
-                        <a class="p-sidebar-nav__link" href="/{{this.path}}">
+                        <a class="p-link--soft" href="/{{this.path}}">
                             {{this.title}}
                         </a>
                     </li>
