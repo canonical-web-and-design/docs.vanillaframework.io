@@ -1,23 +1,20 @@
-# vanillaframework.io
+# docs.vanillaframework.io (legacy)
 
-Brochure and docs site for Vanilla Framework.
+The current documentation site for Vanilla Framework.
 
-This site relies on the documentation in Markdown format that lives in the Vanilla Framework project.
+This project will soon be discontinued (hopefully by April 2017), as docs.vanillaframework.io will be hosted by [the docs.ubuntu.com application](https://github.com/ubuntudesign/docs.ubuntu.com).
 
-You can pull these docs in one of two ways:
+## Running locally
 
+To run this site:
 
-## 1. Importing docs from local copy of Vanilla Framework.
+``` bash
+curl https://getcaddy.com/ | bash  # Install caddy server if you don't have it
+./build-html  # Build HTML documentation from the vanilla-framework repository
+caddy  # Run the server
+```
 
-If you wish to make iterative changes to Vanilla Framework source code and then preview locally, you'll want to link this project to your local copy of the Vanilla Framework project.
-
-1. CD into your Vanilla Framework folder on your machine and run `npm link`
-
-2. Drop back into this folder and run `npm link vanilla-framework`
-
-3. This project will now reference your local copy of Vanilla Framework instead of the global NPM module.
-
-4. If you open two separate Terminal windows for each project and make sure they are installed with `npm install`. Once installed run `gulp develop` in both - any changes you make to Vanilla Framework should be immediately reflected in this project at `http://localhost:3000`
+Now browse to <http://127.0.0.1:8543/en/> to view the documentation.
 
 License
 ---
