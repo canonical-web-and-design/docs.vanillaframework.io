@@ -1,9 +1,9 @@
-http://127.0.0.1:8543/en/ {
+http://127.0.0.1:8543/en/, http://docs.vanillaframework.io:8543/en/ {
     ext .html
     root en/
 }
 
-http://127.0.0.1:8543 {
+http://127.0.0.1:8543, http://docs.vanillaframework.io:8543 {
     redir / /en/ 302
 }
 
