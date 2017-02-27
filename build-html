@@ -3,7 +3,9 @@ git clone https://github.com/vanilla-framework/vanilla-framework
 documentation-builder --base-directory vanilla-framework/docs  \
                       --site-root '/en/'  \
                       --output-path .  \
+                      --template-path template.html  \
                       --tag-manager-code 'GTM-K92JCQ'  \
                       --no-link-extensions \
                       --force
 rm -rf vanilla-framework
+
