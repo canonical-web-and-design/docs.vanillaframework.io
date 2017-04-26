@@ -435,15 +435,6 @@
           expandCollapseAll(document.querySelectorAll('.p-sidebar-nav li'));
           </script>
         </div>
-        <nav class="p-breadcrumbs">
-          {% for breadcrumb in breadcrumbs %}
-            {% if breadcrumb.active or not breadcrumb.location %}
-              <span class="p-breadcrumbs__link">{{ breadcrumb.title }}</span>
-            {% else %}
-              <a class="p-breadcrumbs__link" href="{{ breadcrumb.location }}">{{ breadcrumb.title }}</a>
-            {% endif %}
-          {% endfor %}
-        </nav>
         {% endif %}
         <div class="col-12 p-layout__main">
           <main id="main-content" class="p-layout__inner">
