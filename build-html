@@ -1,5 +1,5 @@
 rm -rf vanilla-framework
-git clone https://github.com/vanilla-framework/vanilla-framework
+git clone https://github.com/vanilla-framework/vanilla-framework --branch master
 documentation-builder --base-directory vanilla-framework/docs  \
                       --site-root '/en/'  \
                       --output-path .  \
