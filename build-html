@@ -1,3 +1,12 @@
+BLUE='\033[1;34m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+echo "${BLUE}Clearing build${NC}"
+rm -rf en
+echo "${GREEN}Build removed${NC}"
+
+echo "${BLUE}Building vanilla-frameworks documentation${NC}"
 rm -rf vanilla-framework
 git clone https://github.com/vanilla-framework/vanilla-framework --branch master
 documentation-builder --base-directory vanilla-framework/docs  \
@@ -8,4 +17,21 @@ documentation-builder --base-directory vanilla-framework/docs  \
                       --no-link-extensions \
                       --force
 rm -rf vanilla-framework
+echo "${GREEN}Completed vanilla-framework documentation build${NC}"
+
+echo "${BLUE}Build vanilla-brochure-theme documentation${NC}"
+rm -rf vanilla-brochure-theme
+git clone https://github.com/vanilla-framework/vanilla-brochure-theme
+documentation-builder --base-directory vanilla-brochure-theme/docs \
+                      --site-root '/en/' \
+                      --output-path 'en/vanilla-brochure-theme' \
+                      --template-path template.html \
+                      --tag-manager-code 'GTM-K92JCQ'  \
+                      --no-link-extensions \
+                      --force
+
+mv en/vanilla-brochure-theme/en/* en/vanilla-brochure-theme/.
+rm -rf en/vanilla-brochure-theme/en/
+rm -rf vanilla-brochure-theme
+echo "${GREEN}Completed vanilla-brochure-theme documentation build${NC}"
 
