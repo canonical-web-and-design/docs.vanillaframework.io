@@ -24,14 +24,14 @@ rm -rf vanilla-brochure-theme
 git clone https://github.com/vanilla-framework/vanilla-brochure-theme
 documentation-builder --base-directory vanilla-brochure-theme/docs \
                       --site-root '/en/' \
-                      --output-path 'en/themes/vanilla-brochure-theme' \
+                      --output-path 'en/vanilla-brochure-theme' \
                       --template-path template.html \
                       --tag-manager-code 'GTM-K92JCQ'  \
                       --no-link-extensions \
                       --force
 
-mv en/themes/vanilla-brochure-theme/en/* en/themes/vanilla-brochure-theme/.
-rm -rf en/themes/vanilla-brochure-theme/en/
+mv en/vanilla-brochure-theme/en/* en/vanilla-brochure-theme/.
+rm -rf en/vanilla-brochure-theme/en/
 rm -rf vanilla-brochure-theme
 echo "${GREEN}Completed vanilla-brochure-theme documentation build${NC}"
 
