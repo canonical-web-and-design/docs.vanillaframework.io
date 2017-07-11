@@ -23,7 +23,7 @@ echo "${BLUE}Build vanilla-brochure-theme documentation${NC}"
 rm -rf vanilla-brochure-theme
 git clone https://github.com/vanilla-framework/vanilla-brochure-theme
 documentation-builder --base-directory vanilla-brochure-theme/docs \
-                      --site-root '/en/' \
+                      --site-root '/en/vanilla-brochure-theme/index' \
                       --output-path 'en/vanilla-brochure-theme' \
                       --template-path template.html \
                       --tag-manager-code 'GTM-K92JCQ'  \
