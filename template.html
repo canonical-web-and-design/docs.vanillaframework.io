@@ -12,7 +12,7 @@
     {% endif %}
 
     <meta charset="UTF-8" />
-    <title>{{ site_title if site_title else 'Documentation' }}</title>
+    <title>{{ title }} | {{ site_title if site_title else 'Documentation' }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ site_favicon }}" type="image/x-icon" />
     <style>
@@ -242,7 +242,7 @@
       <div class="p-navigation__logo">
         {% if site_root %}<a class="p-navigation__link" href="{{ site_root }}">{% endif %}
           {% if site_logo_url %}<img class="p-navigation__image" src="{{ site_logo_url }}" alt="{{ site_title }} logo" />{% endif %}
-          Documentation
+          {{ site_title if site_title else 'Documentation' }}
         {% if site_root %}</a>{% endif %}
       </div>
       <label for="nav-toggle-checkbox" class="theme__sidebar-toggle-button">Menu</label>
