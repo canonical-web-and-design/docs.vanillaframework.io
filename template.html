@@ -163,10 +163,10 @@
       /**
        * Make the aside section fixed to the top
        */
-      .p-aside.fixed {
-        position: fixed;
+      .p-aside {
+        position: -webkit-sticky;
+        position: sticky;
         top: 0;
-        margin-top: 0;
        }
 
       /**
@@ -491,21 +491,6 @@
           link.className += ' p-link--external';
         }
       });
-
-      /* Setup sticky table of contents */
-      var aside = document.querySelector('#side-content');
-      if (aside) {
-        var asideOffset = aside.getBoundingClientRect().top + window.scrollY;
-        var asideWidth = aside.offsetWidth;
-
-        window.addEventListener(
-          'scroll',
-          function() {
-            var scrolled = window.innerWidth >= 768 && window.scrollY > 0 && window.scrollY > asideOffset;
-            aside.classList.toggle('fixed', scrolled);
-          }
-        );
-      }
     </script>
     <script src="https://assets.ubuntu.com/v1/dede3e18-example-1.0.4.js"></script>
   </body>
