@@ -166,7 +166,6 @@
       .p-aside.fixed {
         position: fixed;
         top: 0;
-        right: 0;
         margin-top: 0;
        }
 
@@ -496,24 +495,14 @@
       /* Setup sticky table of contents */
       var aside = document.querySelector('#side-content');
       if (aside) {
-        var asideOffset = aside.offsetTop;
+        var asideOffset = aside.getBoundingClientRect().top + window.scrollY;
         var asideWidth = aside.offsetWidth;
-        var backToTop = document.querySelector('#back-to-top');
 
         window.addEventListener(
           'scroll',
-          function(scrollEvent) {
-            var scrolled = window.innerWidth >= 768 && window.scrollY > asideOffset;
-
+          function() {
+            var scrolled = window.innerWidth >= 768 && window.scrollY > 0 && window.scrollY > asideOffset;
             aside.classList.toggle('fixed', scrolled);
-
-            if (scrolled) {
-              aside.style.width = asideWidth + 'px';
-              backToTop.style.display = 'block';
-            } else {
-              aside.style.width = '';
-              backToTop.style.display = 'none';
-            }
           }
         );
       }
