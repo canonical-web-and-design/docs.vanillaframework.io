@@ -1,9 +1,12 @@
+# DEPRECATED
+
+This repository has been deprecated and is not actively maintained.
+
+https://docs.vanillaframework.io is now built by [vanilla-framework repository](https://github.com/vanilla-framework/vanilla-framework), alongside the documentation files themselves in the `/docs` folder.
+
+-----
+
 # docs.vanillaframework.io (legacy)
-
-The current documentation site for Vanilla Framework.
-
-This project will soon be discontinued (hopefully by April 2017), as docs.vanillaframework.io will be hosted by [the docs.ubuntu.com application](https://github.com/ubuntudesign/docs.ubuntu.com).
-
 ## Running locally
 
 To run this site:
